@@ -23,12 +23,12 @@ void createpoly(int c, int e, polynomial *prear)
 
 polynomial readpoly()
 {
-	polynomial P, rear,t;//rearÖ¸ÏòÁ´±íµÄÊµÊ±Î»ÖÃ
+	polynomial P, rear,t;//rearæŒ‡å‘é“¾è¡¨çš„å®æ—¶ä½ç½®
 	P = new Polynode;;
 	P->link = NULL;
 	rear = P;
 	int c,ex,N;
-	cin >> N;//·ÇÁãÏî¸öÊı
+	cin >> N;//éé›¶é¡¹ä¸ªæ•°
 	while (N--)
 	{
 		cin >> c >> ex;
@@ -41,7 +41,7 @@ polynomial addpoly(polynomial p1,polynomial p2)
 {  
 	polynomial t1, t2, p,rear,t;
 	int sum;
-	p = new Polynode;;//ÉêÇëĞÂ¿Õ¼ä
+	p = new Polynode;;//ç”³è¯·æ–°ç©ºé—´
 	p->link = NULL;
 	rear = p;
 	t1 = p1, t2 = p2;
@@ -130,7 +130,7 @@ polynomial multipoly(polynomial p1, polynomial p2)
 				t->c = c; t->ex = e;
 				t->link = rear->link;
 				rear->link = t;
-				rear = rear->link;
+				rear = rear->link;//ç§»åŠ¨è‡³æ–°ç”Ÿæˆçš„èŠ‚ç‚¹
 			}
 			t2 = t2->link;
 		}
@@ -161,8 +161,8 @@ void printpoly(polynomial p)
 int main()
 {
 	polynomial p1, p2,pa,pm;
-	p1=readpoly();//ÊäÈëµÚÒ»¸ö¶àÏîÊ½
-	p2 = readpoly();//ÊäÈëµÚ¶ş¸ö¶àÏîÊ½
+	p1=readpoly();//è¾“å…¥ç¬¬ä¸€ä¸ªå¤šé¡¹å¼
+	p2 = readpoly();//è¾“å…¥ç¬¬äºŒä¸ªå¤šé¡¹å¼
 	pm = multipoly(p1, p2);
 	printpoly(pm);
 	pa = addpoly(p1, p2);
