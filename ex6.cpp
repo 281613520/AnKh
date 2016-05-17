@@ -22,12 +22,12 @@ int createtree(Tree t[])
 		for (int i = 0; i < N; i++) check[i] = 0;
 		for (int i = 0; i < N; i++) {
 			cin >> t[i].word >> cl >> cr;
-			if (cl == '-') {
+			if (cl != '-') {
 				t[i].left = cl - '0';
 				check[t[i].left] = 1;
 			}
 			else t[i].left = Null;
-			if (cr == '-') {
+			if (cr != '-') {
 				t[i].left = cr - '0';
 				check[t[i].right] = 1;
 			}
@@ -50,18 +50,18 @@ bool compare(int r1, int r2)
 		return 1;
 	if ((r1 != -1 &&r2 == -1) || (r1 == -1 &&r2 != -1))
 		return 0;
-	if (t1[r1].word != t2[r2].word)// Ê÷½ÚµãÖµvalue²»ÏàµÈ
+	if (t1[r1].word != t2[r2].word)// æ ‘èŠ‚ç‚¹å€¼valueä¸ç›¸ç­‰
 		return false;
-	if (t1[r1].left == -1&&t2[r2].left == -1)// Á½Õß×ó×ÓÊ÷½Ô¿Õ ×ª¶øÅĞ¶ÏÓÒ×ÓÊ÷
+	if (t1[r1].left == -1&&t2[r2].left == -1)// ä¸¤è€…å·¦å­æ ‘çš†ç©º è½¬è€Œåˆ¤æ–­å³å­æ ‘
 		return compare(t1[r1].right, t2[r2].right);
 
 	if (t1[r1].left != -1&&t2[r2].left != -1 &&
-		t1[t1[r1].left].word == t2[t2[r2].left].word)// Á½Õß×ó×ÓÊ÷½Ô²»¿Õ ²¢ÇÒ×ó×ÓÊ÷µÄÖµÏàµÈ
+		t1[t1[r1].left].word == t2[t2[r2].left].word)// ä¸¤è€…å·¦å­æ ‘çš†ä¸ç©º å¹¶ä¸”å·¦å­æ ‘çš„å€¼ç›¸ç­‰
 		return (compare(t1[r1].left, t2[r2].left) &&
-			compare(t1[r1].right, t2[r2].right));// ×ª¶ø¶şÂ·µİ¹éÅĞ¶ÏÁ½ÕßµÄ×ÓÊ÷
+			compare(t1[r1].right, t2[r2].right));// è½¬è€ŒäºŒè·¯é€’å½’åˆ¤æ–­ä¸¤è€…çš„å­æ ‘
 	else
 		return (compare(t1[r1].left, t2[r2].right) &&
-			compare(t1[r1].right, t2[r2].left));// Á½Õß×ó×ÓÊ÷ÓĞÒ»¸ö¿Õ »ò ½Ô²»¿Õµ«Öµ²»ÏàµÈ Ôò½»»»×óÓÒ×ÓÊ÷ÔÙÅĞ¶Ï
+			compare(t1[r1].right, t2[r2].left));// ä¸¤è€…å·¦å­æ ‘æœ‰ä¸€ä¸ªç©º æˆ– çš†ä¸ç©ºä½†å€¼ä¸ç›¸ç­‰ åˆ™äº¤æ¢å·¦å³å­æ ‘å†åˆ¤æ–­
 
 	
 }
