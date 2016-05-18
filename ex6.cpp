@@ -52,10 +52,10 @@ bool compare(int r1, int r2)
 		return 0;
 	if (t1[r1].word != t2[r2].word)// 树节点值value不相等
 		return false;
-	if (t1[r1].left == -1&&t2[r2].left == -1)// 两者左子树皆空 转而判断右子树
+	if (（t1[r1].left == -1）&&（t2[r2].left == -1）)// 两者左子树皆空 转而判断右子树
 		return compare(t1[r1].right, t2[r2].right);
 
-	if (t1[r1].left != -1&&t2[r2].left != -1 &&
+	if (（t1[r1].left != -1）&&（t2[r2].left != -1） &&
 		t1[t1[r1].left].word == t2[t2[r2].left].word)// 两者左子树皆不空 并且左子树的值相等
 		return (compare(t1[r1].left, t2[r2].left) &&
 			compare(t1[r1].right, t2[r2].right));// 转而二路递归判断两者的子树
