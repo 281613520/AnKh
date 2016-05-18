@@ -56,7 +56,7 @@ bool compare(int r1, int r2)
 		return compare(t1[r1].right, t2[r2].right);
 
 	if (（t1[r1].left != -1）&&（t2[r2].left != -1） &&
-		t1[t1[r1].left].word == t2[t2[r2].left].word)// 两者左子树皆不空 并且左子树的值相等
+		（t1[t1[r1].left].word == t2[t2[r2].left].word）)// 两者左子树皆不空 并且左子树的值相等
 		return (compare(t1[r1].left, t2[r2].left) &&
 			compare(t1[r1].right, t2[r2].right));// 转而二路递归判断两者的子树
 	else
