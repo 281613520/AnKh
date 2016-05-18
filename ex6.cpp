@@ -1,25 +1,20 @@
 #include<iostream>
-
-using namespace std;
-
 #define Null -1;
-
-struct Tree{
+using namespace std;
+struct Tree {
 	int left;
 	int right;
 	char word;
-}t1[10],t2[10];
-
+}t1[10], t2[10];
 int createtree(Tree t[])
 {
 	int Root;
 	int N;
 	char cl, cr;
 	cin >> N;
-	int check[10];
-	
+	int check[10] = {0};
+
 	if (N) {
-		for (int i = 0; i < N; i++) check[i] = 0;
 		for (int i = 0; i < N; i++) {
 			cin >> t[i].word >> cl >> cr;
 			if (cl != '-') {
@@ -35,48 +30,55 @@ int createtree(Tree t[])
 		}
 		for (int i = 0; i < N; i++)
 		{
-			if (!check[i])break;
-
-			Root = i;
+			if (!check[i]) {
+				Root = i;
+				break;
+			}
 		}
+	}
+	else
+	{
+		Root = -1;
+	}
+	for (int i = 0; i < N; i++)
+	{
+		cout << t1[i].word << " " << t1[i].left << " " << t1[i].right << endl;
+		cout << t1[i].word << " " << t1[i].left << " " << t1[i].right << endl;
 	}
 	return Root;
 
 }
-
 bool compare(int r1, int r2)
 {
 	if (r1 == -1 && r2 == -1)
 		return 1;
-	if ((r1 != -1 &&r2 == -1) || (r1 == -1 &&r2 != -1))
+	if ((r1 != -1 && r2 == -1) || (r1 == -1 && r2 != -1))
 		return 0;
-	if (t1[r1].word != t2[r2].word)// æ ‘èŠ‚ç‚¹å€¼valueä¸ç›¸ç­‰
+	if (t1[r1].word != t2[r2].word)// Ê÷½ÚµãÖµvalue²»ÏàµÈ
 		return false;
-	if (ï¼ˆt1[r1].left == -1ï¼‰&&ï¼ˆt2[r2].left == -1ï¼‰)// ä¸¤è€…å·¦å­æ ‘çš†ç©º è½¬è€Œåˆ¤æ–­å³å­æ ‘
+	if ((t1[r1].left == -1)&&(t2[r2].left == -1))// Á½Õß×ó×ÓÊ÷½Ô¿Õ ×ª¶øÅÐ¶ÏÓÒ×ÓÊ÷
 		return compare(t1[r1].right, t2[r2].right);
 
-	if (ï¼ˆt1[r1].left != -1ï¼‰&&ï¼ˆt2[r2].left != -1ï¼‰ &&
-		ï¼ˆt1[t1[r1].left].word == t2[t2[r2].left].wordï¼‰)// ä¸¤è€…å·¦å­æ ‘çš†ä¸ç©º å¹¶ä¸”å·¦å­æ ‘çš„å€¼ç›¸ç­‰
+	if ((t1[r1].left != -1) && (t2[r2].left != -1) &&
+		((t1[t1[r1].left].word) == (t2[t2[r2].left].word)))// Á½Õß×ó×ÓÊ÷½Ô²»¿Õ ²¢ÇÒ×ó×ÓÊ÷µÄÖµÏàµÈ
+	{
 		return (compare(t1[r1].left, t2[r2].left) &&
-			compare(t1[r1].right, t2[r2].right));// è½¬è€ŒäºŒè·¯é€’å½’åˆ¤æ–­ä¸¤è€…çš„å­æ ‘
-	else
+			compare(t1[r1].right, t2[r2].right));// ×ª¶ø¶þÂ·µÝ¹éÅÐ¶ÏÁ½ÕßµÄ×ÓÊ÷
+	}
+	else {
 		return (compare(t1[r1].left, t2[r2].right) &&
-			compare(t1[r1].right, t2[r2].left));// ä¸¤è€…å·¦å­æ ‘æœ‰ä¸€ä¸ªç©º æˆ– çš†ä¸ç©ºä½†å€¼ä¸ç›¸ç­‰ åˆ™äº¤æ¢å·¦å³å­æ ‘å†åˆ¤æ–­
+			compare(t1[r1].right, t2[r2].left));// Á½Õß×ó×ÓÊ÷ÓÐÒ»¸ö¿Õ »ò ½Ô²»¿Õµ«Öµ²»ÏàµÈ Ôò½»»»×óÓÒ×ÓÊ÷ÔÙÅÐ¶Ï
+	}
 
-	
 }
-
 
 int main()
 {
-	
-	int r1=createtree(t1);//jianshu
+	int r1 = createtree(t1);//jianshu
 	int r2 = createtree(t2);
-
 	if (compare(r1, r2))
 		cout << "Yes" << endl;
 	else
 		cout << "No" << endl;
 	return 0;
 }
-
