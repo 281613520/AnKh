@@ -23,7 +23,7 @@ int createtree(Tree t[])
 			}
 			else t[i].left = Null;
 			if (cr != '-') {
-				t[i].left = cr - '0';
+				t[i].right = cr - '0';
 				check[t[i].right] = 1;
 			}
 			else t[i].right = Null;
@@ -40,11 +40,7 @@ int createtree(Tree t[])
 	{
 		Root = -1;
 	}
-	for (int i = 0; i < N; i++)
-	{
-		cout << t1[i].word << " " << t1[i].left << " " << t1[i].right << endl;
-		cout << t1[i].word << " " << t1[i].left << " " << t1[i].right << endl;
-	}
+
 	return Root;
 
 }
