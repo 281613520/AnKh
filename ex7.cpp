@@ -1,21 +1,23 @@
-#include<iostream>
+О╩©#include<iostream>
 #include<queue>
+#include<vector>
 using namespace std;
 #define MAX 10;
+vector<int> num;
 
 struct tree
-{ 
+{
 	int left;
 	int right;
 }T[10];
 
 int build(tree t[])
 {
-	int N,root;
-	
+	int N, root;
+
 	char tr, tl;
 	cin >> N;
-	int check[10];//ур╦Ы╫з╣Ц
+	int check[10];
 	if (N)
 	{
 		for (int i = 0; i < N; i++) check[i] = 0;
@@ -40,13 +42,16 @@ int build(tree t[])
 			{
 				t[i].right = -1;
 			}
-			
+
 		}
 		for (int i = 0; i < N; i++)
 		{
-			if (check[i]==0)break;
-			root = i+1;
+			if (check[i] == 0)break;
+			root = i + 1;
 		}
+	}
+	else {
+		root = -1;
 	}
 	return root;
 }
@@ -62,19 +67,35 @@ void PrintTree(int root)
 	Q.push(root);
 	while (!Q.empty())
 	{
-		node = Q.front();
-		Q.pop();
-		cout << node << " ";
-		if (T[node].left!=-1)
-			Q.push(T[node].left);
-		if(T[node].right!=-1)
-			Q.push(T[node].right);
+		    node = Q.front();
+			Q.pop();
+			if (T[node].left != -1)
+			{
+				Q.push(T[node].left);
+			}
+			if (T[node].right != -1)
+			{
+				Q.push(T[node].right);
+			}
+		    if (T[node].left==-1&& T[node].right == -1)
+			{
+				num.push_back(node);
+			}
 	}
 }
 int main()
 {
 	int r = build(T);//jianshu
 	PrintTree(r);//bianli daying
-	system("pause");
+	for (auto i = 0; i < num.size(); i++)
+	{
+		if (i == num.size() - 1)
+		{
+			cout << num[i];
+		}
+		else {
+			cout << num[i] << " ";
+		}
+	}
 	return 0;
 }
